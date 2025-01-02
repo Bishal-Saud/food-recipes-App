@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Portfolio",
-    "slug": "Portfolio",
+    "name": "Bishal",
+    "slug": "Bishal",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "bishal",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
