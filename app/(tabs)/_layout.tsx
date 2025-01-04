@@ -24,10 +24,10 @@ interface TabIconProps {
 const TabsLayout = () => {
   return (
     <>
-      <Tabs screenOptions={{ tabBarShowLabel: false,   tabBarActiveTintColor:"#FF9494",
-             tabBarInactiveTintColor:'#CDCDE0',
+      <Tabs screenOptions={{ tabBarShowLabel: false,   tabBarActiveTintColor:"#FF2E63",
+             tabBarInactiveTintColor:'#222831',
              tabBarStyle:{
-                backgroundColor:"#161622",
+                backgroundColor:"#F9F5F6",
                 borderTopWidth:1,
                 borderTopColor:"#232533",
                 height:50,
