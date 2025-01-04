@@ -5,6 +5,7 @@ import RecipeCard from '@/components/RecipeCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
 import { images } from '@/constants/'
+import RecommendRecipe from '@/components/RecommendRecipe'
 
 const fakeData =[
   {
@@ -45,16 +46,13 @@ const Home = () => {
    <SafeAreaView className='mx-5'>
     <FlatList  
     data={fakeData}
-keyExtractor={(item)=>item.id}
+keyExtractor={(item:any)=>item.id}
 renderItem={(item)=>(
 
- <ScrollView>
-  <View className='flex flex-row'>
+ <ScrollView >
 
- <Text>
-  Hey
- </Text>
-  </View>
+<RecommendRecipe data={item}/>
+
  </ScrollView>
 
 
@@ -70,10 +68,20 @@ ListHeaderComponent={()=>(
     </Text>
     </Text>
 
-  
 <SearchInput/>
+<View className='mt-5'>
+<Text className='text-center text-secondary-200 font-pbold'>Hot Recipe's</Text>  
+</View>
  
  <RecipeCard data={fakeData}/>
+
+ <View className='mt-2'>
+  <Text className='text-2xl font-pregular'>
+
+  Welcome to Easy Recipe {""}
+  <Text className='text-pink-500 font-psemibold'>Here's what we recommend for you</Text>
+  </Text>
+ </View>
   </View>
 )}
     ListEmptyComponent={()=>(
