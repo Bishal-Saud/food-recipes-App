@@ -2,6 +2,8 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import {icons} from '../../constants'
+
+import Recipes from "../recipes/[recipes]";
 interface TabIconProps {
     icon?: any;
     color?: string;
@@ -21,6 +23,8 @@ interface TabIconProps {
     );
   };
 
+
+
 const TabsLayout = () => {
   return (
     <>
@@ -37,9 +41,10 @@ const TabsLayout = () => {
           options={{ title: "Home", headerShown: false,
           tabBarIcon:({color,focused})=>(
             <TabIcon icon={icons.home} color={color} focused={focused} />
-          )
-
+          ),
+          
            }}
+   
         />
         <Tabs.Screen
           name="category"
@@ -59,6 +64,7 @@ const TabsLayout = () => {
             <TabIcon  icon={icons.bookmark} color={color} focused={focused} />
           )  }}
         />
+       
       </Tabs>
     </>
   );

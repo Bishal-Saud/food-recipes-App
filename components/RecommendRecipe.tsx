@@ -1,14 +1,19 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useRouter } from 'expo-router'
 
 
 
 const RecommendRecipe = ({data :{item}}) => {
     
+  const router = useRouter()
     
   return (
    <TouchableOpacity
    activeOpacity={0.6}
+   onPress={()=>{
+    const instructionsString = encodeURIComponent(JSON.stringify(item.instructions));
+    router.push(`/recipes/${item.id}?title=${item.title}&imageUrl=${item.imageUrl}&para=${item.para}&instructions=${instructionsString}`)}}
    >
     <View className='w-full h-full mt-5 mb-5 mx-1  rounded-lg' >
         <View className='w-[300px] h-[250px]' >

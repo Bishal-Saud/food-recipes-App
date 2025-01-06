@@ -1,6 +1,8 @@
 import { View, Text, Image, FlatList, TouchableOpacity, Animated } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { images } from '@/constants'
+import { useRouter } from 'expo-router';
+
 
 type Props = {
     data:[ item: {
@@ -18,10 +20,11 @@ type Props = {
 
 
 const RecipeCard = ({data}) => {
+ 
   
     const scaleValue = useRef(new Animated.Value(1)).current;
   
-   
+   const router = useRouter()
     const startZoomAnimation = () => {
       Animated.loop(
         Animated.sequence([
@@ -54,6 +57,10 @@ const RecipeCard = ({data}) => {
 
 <TouchableOpacity 
 activeOpacity={0.5}
+
+onPress={() =>{
+  const instructionsString = encodeURIComponent(JSON.stringify(item.instructions));
+  router.push(`/recipes/${item.id}?title=${item.title}&imageUrl=${item.imageUrl}&para=${item.para}&instructions=${instructionsString}`)}}
 
 >
 
