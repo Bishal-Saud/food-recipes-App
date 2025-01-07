@@ -13,6 +13,7 @@ const recipeInstructions = parsedInstructions[0].cookingInstructions[0]
 
 
   return (
+    
    <ScrollView className=' mx-5'>
     <View className='flex items-center mt-10'>
       <Image source={imageUrl} className='w-40 h-40 rounded-full' resizeMode='cover'/>

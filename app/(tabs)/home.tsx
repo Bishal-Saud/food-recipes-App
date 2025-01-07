@@ -112,8 +112,11 @@ const fakeData =[
 
 
 const Home = () => {
+
+  
   return (
    <SafeAreaView className='mx-5'>
+
     <FlatList  
     data={fakeData}
 keyExtractor={(item:any)=>item.id}
