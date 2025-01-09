@@ -1,53 +1,12 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
-import { icons, images } from "@/constants";
+import { icons, images,foods } from "@/constants";
 import CustomButton from "@/components/CustomButton";
 import { useFocusEffect } from "expo-router";
 
-const categoriesJson = [
-  {
-    id: 1,
-    title: "Breakfast Delights",
-    image: images.breakfastDelights,
-    description: "Start your day with a variety of delicious and energizing breakfast recipes.",
-  },
-  {
-    id: 2,
-    title: "Lunch Favorites",
-    image: images.lunchFavorites,
-    description: "Enjoy hearty and flavorful meals perfect for midday dining.",
-  },
-  {
-    id: 3,
-    title: "Dinner Specials",
-    image: images.dinnerSpecial,
-    description: "Savor these carefully curated dinner recipes for a satisfying evening meal.",
-  },
-  {
-    id: 4,
-    title: "Fast Food & Snacks",
-    image: images.fastFood,
-    description: "Quick, tasty, and fun options for snacks and fast food cravings.",
-  },
-  {
-    id: 5,
-    title: "Healthy Recipes",
-    image: images.healthyRecipe,
-    description: "Nutritious and wholesome recipes to keep you fit and healthy.",
-  },
-  {
-    id: 6,
-    title: "Desserts & Sweets",
-    image: images.dessertsSweet,
-    description: "Indulge in a variety of sweet treats and decadent desserts.",
-  },
-  {
-    id: 7,
-    title: "Drinks & Beverages",
-    image: images.drinks,
-    description: "Refresh yourself with a range of drinks and beverage recipes.",
-  },
-];
+import {categoriesJson} from '@/constants/categoriesJson'
+
+
 
 
 export const RecipeCategoryCard = ({ source, title, onpress }) => {
@@ -70,56 +29,70 @@ export const RecipeCategoryCard = ({ source, title, onpress }) => {
   );
 };
 
+
 const Category = () => {
-  const [categoriesRecipe, setCategoriesRecipe] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
 
-  const isCategories = ()=>{
-    setCategoriesRecipe(true)
-  } 
+  const handleCategoryClick = (id) => {
+    setSelectedCategory(id);
+  };
+
 
   useFocusEffect(
     React.useCallback(() => {
-      setCategoriesRecipe(false);
+      setSelectedCategory(null);
     }, [])
   );
+
+  const selectedCategoryData =
+    selectedCategory &&
+    categoriesJson.find((category) => category.id === selectedCategory);
+
+    
   return (
     <>
-    {/* REMAINING : Create same things like For each title  */}
-      {categoriesRecipe ? (
+
+      {selectedCategory  ? (
         <ScrollView className="m-5 ">
           <View>
             <Text className="text-2xl font-psemibold text-pink-500">
-              Easy Food Recipe
+            {selectedCategoryData.title}
             </Text>
           </View>
         
           <View className=" my-5 ">
             {
-              categoriesJson.map((item)=>(
-                <View key={item.id} className="flex flex-row my-2 shadow-black shadow-2xl rounded-lg bg-white ">
-                <Image
-                  source={item.image}
-                  className="h-32 w-32"
-                  resizeMode="cover"
-                />
-                <View className="mx-3 flex-1">
-                  <Text className="text-xl font-semibold">{item.title}</Text>
-                  <Text className="mt-2">
-              {item.description.slice(0,200)}...
-                  </Text>
-               <Text className="text-blue-500 underline mt-2">Read More</Text>
+        
+
+                selectedCategoryData.items.map((item,i)=>(
+                  <View key={i} className="flex flex-row my-2 shadow-black shadow-2xl rounded-lg bg-white ">
+                  <Image
+                    source={item.image}
+                    className="h-32 w-32"
+                    resizeMode="cover"
+                  />
+                  <View className="mx-3 my-1 flex-1 ">
+                    <Text className="text-xl font-semibold">{item.name}</Text>
+                    <Text className="my-1">
+                {item.description.slice(0,50)}...
+                    </Text>
+                 <Text className="text-blue-500 underline my-2">Read More</Text>
+                  </View>
                 </View>
-              </View>
-              ))
+
+                ))
+            
+           
             }
           
           </View>
+          <CustomButton title="Back to Categories" onpress={()=>setSelectedCategory(null)}/>
         </ScrollView>
       ) : (
         <ScrollView className="mt-2 p-5">
           <View className="flex  w-full flex-row justify-between items-center">
-            <Text className="text-2xl font-semibold">Category</Text>
+            <Text className="text-2xl font-semibold">All Categories</Text>
             <View
               style={{ backgroundColor: "#F72C5B" }}
               className="p-2 rounded-lg"
@@ -127,7 +100,7 @@ const Category = () => {
               <Image
                 source={icons.category}
                 style={{ tintColor: "white" }}
-                className=" h-10 w-10 "
+                className=" h-8 w-8 "
                 resizeMode="contain"
               />
             </View>
@@ -139,7 +112,7 @@ const Category = () => {
                 key={item.id}
                 source={item.image}
                 title={item.title}
-                onpress={isCategories}
+                onpress={() => handleCategoryClick(item.id)}
               />
             ))}
           </View>

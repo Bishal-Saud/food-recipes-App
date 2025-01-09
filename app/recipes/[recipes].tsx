@@ -2,6 +2,7 @@ import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import { images } from '@/constants'
 import { useLocalSearchParams, useRouter } from 'expo-router'
+import CustomButton from '@/components/CustomButton'
 
 const Recipes = () => {
   const {title,imageUrl,para,instructions} = useLocalSearchParams()
@@ -10,7 +11,7 @@ const parsedInstructions = JSON.parse(decodeURIComponent(instructions));
 
 const recipeInstructions = parsedInstructions[0].cookingInstructions[0]
 
-
+const router = useRouter()
 
   return (
     
@@ -40,7 +41,7 @@ const recipeInstructions = parsedInstructions[0].cookingInstructions[0]
       )}
  
     </View>
-
+<CustomButton title="Back to Home" onpress={()=>router.push('/home') } />
    </ScrollView>
   )
 }
