@@ -92,18 +92,8 @@ const Category = () => {
       ) : (
         <ScrollView className="mt-2 p-5">
           <View className="flex  w-full flex-row justify-between items-center">
-            <Text className="text-2xl font-semibold">All Categories</Text>
-            <View
-              style={{ backgroundColor: "#F72C5B" }}
-              className="p-2 rounded-lg"
-            >
-              <Image
-                source={icons.category}
-                style={{ tintColor: "white" }}
-                className=" h-8 w-8 "
-                resizeMode="contain"
-              />
-            </View>
+            <Text className="text-2xl font-psemibold text-pink-500">All Categories</Text>
+          
           </View>
 
           <View className="mx-5 flex flex-row flex-wrap justify-between mt-5 gap-3">

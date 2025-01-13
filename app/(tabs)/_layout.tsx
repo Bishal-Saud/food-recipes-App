@@ -58,12 +58,12 @@ const TabsLayout = () => {
             <TabIcon  icon={icons.favorite} color={color} focused={focused} />
           )  }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="recipe"
           options={{ title: "recipe", headerShown: false,tabBarIcon:({color,focused})=>(
             <TabIcon  icon={icons.bookmark} color={color} focused={focused} />
           )  }}
-        />
+        /> */}
        
       </Tabs>
     </>

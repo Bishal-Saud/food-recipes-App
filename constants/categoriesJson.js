@@ -11,7 +11,7 @@ export const categoriesJson = [
         name: "Classic Pancakes",
         description:
           "Fluffy pancakes served with a drizzle of maple syrup and a dollop of butter, perfect for a cozy morning start.",
-        image: foods.classicPancakes,
+        image: foods.classicPenCakes,
       },
       {
         name: "Avocado Toast",
