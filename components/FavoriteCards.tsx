@@ -1,6 +1,5 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
-import { images } from '@/constants'
+import React, { useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 
 

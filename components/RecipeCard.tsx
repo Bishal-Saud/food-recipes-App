@@ -1,25 +1,36 @@
-import { View, Text, Image, FlatList, TouchableOpacity, Animated } from 'react-native'
-import React, { useEffect, useRef } from 'react'
-import { images } from '@/constants'
 import { useRouter } from 'expo-router';
+import React, { useEffect, useRef } from 'react';
+import { Animated, FlatList, Image, ImageSourcePropType, Text, TouchableOpacity, View } from 'react-native';
+
+interface JsonDataProps {
+  id:string;
+  imageUrl:ImageSourcePropType;
+  title:string;
+  para:string;
+  instructions:{
+    ingredients:string;
+    cookingInstructions:{
+      one?:string;
+      two?:string;
+      three?:string;
+      four?:string;
+      five?:string;
+      six?:string;
+      seven?:string;
+      eight?:string;
+      nine?:string;
+      ten?:string;
+    }[];
+  }[];
+}
+
+interface DataProps {
+  data : JsonDataProps
+}
 
 
-type Props = {
-    data:[ item: {
-        id: number;
-        imageUrl: string;
-        title: string;
-        para: string;
-      }]
-   
-  };
 
-  interface Data{
-    data:Props
-  }
-
-
-const RecipeCard = ({data}) => {
+const RecipeCard:React.FC<DataProps> = ({data }) => {
  
   
     const scaleValue = useRef(new Animated.Value(1)).current;

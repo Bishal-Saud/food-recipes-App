@@ -1,7 +1,20 @@
 import { images, foods } from "@/constants";
-export const categoriesJson = [
+import { ImageSourcePropType } from "react-native";
+
+interface CategoriesProps {
+  id: string;
+  title: string;
+  image: ImageSourcePropType;
+  description: string;
+  items: {
+    name: string;
+    description: string;
+    image: ImageSourcePropType;
+  }[];
+}
+export const categoriesJson: CategoriesProps[] = [
   {
-    id: 1,
+    id: "1",
     title: "Breakfast Delights",
     image: images.breakfastDelights,
     description:
@@ -11,7 +24,7 @@ export const categoriesJson = [
         name: "Classic Pancakes",
         description:
           "Fluffy pancakes served with a drizzle of maple syrup and a dollop of butter, perfect for a cozy morning start.",
-        image: foods.classicPenCakes,
+        image: foods.classicPancakes,
       },
       {
         name: "Avocado Toast",
@@ -52,7 +65,7 @@ export const categoriesJson = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     title: "Lunch Favorites",
     image: images.lunchFavorites,
     description: "Enjoy hearty and flavorful meals perfect for midday dining.",
@@ -102,7 +115,7 @@ export const categoriesJson = [
     ],
   },
   {
-    id: 3,
+    id: "3",
     title: "Dinner Specials",
     image: images.dinnerSpecial,
     description:
@@ -153,7 +166,7 @@ export const categoriesJson = [
     ],
   },
   {
-    id: 4,
+    id: "4",
     title: "Fast Food & Snacks",
     image: images.fastFood,
     description:
@@ -203,7 +216,7 @@ export const categoriesJson = [
     ],
   },
   {
-    id: 5,
+    id: "5",
     title: "Healthy Recipes",
     image: images.healthyRecipe,
     description:
@@ -254,7 +267,7 @@ export const categoriesJson = [
     ],
   },
   {
-    id: 6,
+    id: "6",
     title: "Desserts & Sweets",
     image: images.dessertsSweet,
     description: "Indulge in a variety of sweet treats and decadent desserts.",
@@ -301,7 +314,7 @@ export const categoriesJson = [
     ],
   },
   {
-    id: 7,
+    id: " 7",
     title: "Drinks & Beverages",
     image: images.drinks,
     description:

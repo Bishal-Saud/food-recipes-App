@@ -1,16 +1,17 @@
-import { View, Text, ScrollView, Image } from 'react-native'
-import React from 'react'
-import { images } from '@/constants'
-import { useLocalSearchParams, useRouter } from 'expo-router'
 import CustomButton from '@/components/CustomButton'
+import { useLocalSearchParams, useRouter } from 'expo-router'
+import React from 'react'
+import { Image, ScrollView, Text, View } from 'react-native'
 
 const Recipes = () => {
   const {title,imageUrl,para,instructions} = useLocalSearchParams()
-// console.log(instructions.toString());
-const parsedInstructions = JSON.parse(decodeURIComponent(instructions));
+  const decodedInstructions = Array.isArray(instructions) 
+  ? instructions[0] 
+  : instructions;
+const parsedInstructions = JSON.parse(decodeURIComponent(decodedInstructions));
 
 const recipeInstructions = parsedInstructions[0].cookingInstructions[0]
-
+ 
 const router = useRouter()
 
   return (

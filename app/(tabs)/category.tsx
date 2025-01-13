@@ -1,15 +1,41 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
-import { icons, images,foods } from "@/constants";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  ImageSourcePropType,
+} from "react-native";
+import React, { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import { useFocusEffect } from "expo-router";
 
-import {categoriesJson} from '@/constants/categoriesJson'
+import { categoriesJson } from "@/constants/categoriesJson";
 
+interface Props {
+  source?: ImageSourcePropType | undefined;
+  title: string;
+  onpress: () => void;
+}
 
+interface SelectedCategoriesProps {
+  id: string;
+  title: string;
+  image: ImageSourcePropType;
+  description: string;
+  items: {
+    name: string;
+    description: string;
+    image: ImageSourcePropType;
+  }[];
 
+}
 
-export const RecipeCategoryCard = ({ source, title, onpress }) => {
+export const RecipeCategoryCard: React.FC<Props> = ({
+  source,
+  title,
+  onpress,
+}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
@@ -29,15 +55,12 @@ export const RecipeCategoryCard = ({ source, title, onpress }) => {
   );
 };
 
-
 const Category = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-
-  const handleCategoryClick = (id) => {
+  const handleCategoryClick = (id: string) => {
     setSelectedCategory(id);
   };
-
 
   useFocusEffect(
     React.useCallback(() => {
@@ -45,55 +68,57 @@ const Category = () => {
     }, [])
   );
 
-  const selectedCategoryData =
+  
+
+  const selectedCategoryData:SelectedCategoriesProps | undefined =
     selectedCategory &&
     categoriesJson.find((category) => category.id === selectedCategory);
 
-    
+
   return (
     <>
-
-      {selectedCategory  ? (
+      {selectedCategory ? (
         <ScrollView className="m-5 ">
           <View>
             <Text className="text-2xl font-psemibold text-pink-500">
-            {selectedCategoryData.title}
+              {selectedCategoryData?.title}
             </Text>
           </View>
-        
+
           <View className=" my-5 ">
-            {
-        
-
-                selectedCategoryData.items.map((item,i)=>(
-                  <View key={i} className="flex flex-row my-2 shadow-black shadow-2xl rounded-lg bg-white ">
-                  <Image
-                    source={item.image}
-                    className="h-32 w-32"
-                    resizeMode="cover"
-                  />
-                  <View className="mx-3 my-1 flex-1 ">
-                    <Text className="text-xl font-semibold">{item.name}</Text>
-                    <Text className="my-1">
-                {item.description.slice(0,50)}...
-                    </Text>
-                 <Text className="text-blue-500 underline my-2">Read More</Text>
-                  </View>
+            {selectedCategoryData?.items?.map((item, i) => (
+              <View
+                key={i}
+                className="flex flex-row my-2 shadow-black shadow-2xl rounded-lg bg-white "
+              >
+                <Image
+                  source={item.image}
+                  className="h-32 w-32"
+                  resizeMode="cover"
+                />
+                <View className="mx-3 my-1 flex-1 ">
+                  <Text className="text-xl font-semibold">{item.name}</Text>
+                  <Text className="my-1">
+                    {item.description.slice(0, 50)}...
+                  </Text>
+                  <Text className="text-blue-500 underline my-2">
+                    Read More
+                  </Text>
                 </View>
-
-                ))
-            
-           
-            }
-          
+              </View>
+            ))}
           </View>
-          <CustomButton title="Back to Categories" onpress={()=>setSelectedCategory(null)}/>
+          <CustomButton
+            title="Back to Categories"
+            onpress={() => setSelectedCategory(null)}
+          />
         </ScrollView>
       ) : (
         <ScrollView className="mt-2 p-5">
           <View className="flex  w-full flex-row justify-between items-center">
-            <Text className="text-2xl font-psemibold text-pink-500">All Categories</Text>
-          
+            <Text className="text-2xl font-psemibold text-pink-500">
+              All Categories
+            </Text>
           </View>
 
           <View className="mx-5 flex flex-row flex-wrap justify-between mt-5 gap-3">

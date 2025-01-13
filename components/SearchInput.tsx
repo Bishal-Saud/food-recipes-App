@@ -1,6 +1,6 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
 import { icons } from '@/constants'
+import React from 'react'
+import { Image, TextInput, TouchableOpacity, View } from 'react-native'
 
 const SearchInput = () => {
   return (
